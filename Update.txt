@@ -1,0 +1,19 @@
+How to export Shape files from Arcmap
+1. Open ArcMap
+2. Load Large Map (Vietnam Administration - VNM_adm3.shp)
+3. Select feature (Hoa Quang Nam, Hoa Quang Bac):
+	Open Attribute table 
+		- Select by Hoa Quang Nam, Hoa Quang Bac
+		- Zoom to Selected
+		- Close Table
+4. R_Click Layer - Data - Export Data
+	- Tick: this layer's source data
+	- Save Output feature data
+		Name: HoaQuangNam_Bac.shp
+	- OK
+	- Add to layer or Not (yes)
+
+How to Display this shape in leaflet R
+1. library(rgdal)
+2. sample_loc <- readOGR("www/shapefiles/HoaQuangNam_Bac.shp")
+3. addPolygons(data = sample_loc,fill = TRUE, weight = 2, color = "#bf1363", smoothFactor = 1) %>%
