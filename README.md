@@ -88,4 +88,38 @@ ui <- dashboardPage(
 
         )
     )#End DashboardBody
-)#End UI Dashboard
+    )#End UI Dashboard
+## 1.3.2. Thiết kế dashboardBody
+
+ui <- dashboardPage(
+    ## Tiêu đề của Dashboard
+    dashboardHeader(title = "Genetics Conservation"), 
+    
+    ## Sidebar content
+    dashboardSidebar(
+        sidebarMenu(
+
+        )#End SideBarMenu
+    ),
+    
+    ## Body
+    dashboardBody(
+        tabItems(
+            # MAP tab content
+            tabItem(tabName = "dashboard",
+                    leafletOutput("SHPplot", height = 570)),
+            # Second tab content
+            tabItem(tabName = "widgets",
+                    h2("Widgets tab content")),
+            #Subtab items
+            tabItem(tabName = "infomation", 
+                    uiOutput("infomation")),
+             tabItem(tabName = "genetics", 
+                     uiOutput("genetics")),
+            
+             tabItem(tabName = "image",
+                     #tableOutput('files'),
+                     uiOutput("image"))
+        )#End Tab Items
+    )#End DashboardBody
+    )#End UI Dashboard
