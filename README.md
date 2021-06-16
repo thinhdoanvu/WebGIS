@@ -145,8 +145,8 @@ Nội dung của file data như sau:
 Tên layer của 2 địa điểm thu mẫu được trình bày trong ArcGIS (xem hướng dẫn làm thế nào để tạo được 2 layer này ở cuối bài viết)
 
 ##### icon cho từng địa điểm thu mẫu, sử dụng thư viện của leaflet.
-greenLeafIcon <- makeIcon(
-  iconUrl = "http://leafletjs.com/examples/custom-icons/leaf-green.png",
+###### greenLeafIcon <- makeIcon(
+  ###### iconUrl = "http://leafletjs.com/examples/custom-icons/leaf-green.png",
   iconWidth = 38, iconHeight = 95,
   iconAnchorX = 22, iconAnchorY = 94,
   shadowUrl = "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
