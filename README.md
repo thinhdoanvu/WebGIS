@@ -34,9 +34,9 @@ Các thư viện này được sử dụng cho dự án WebGIS trong ví dụ. C
 ##### > install.packages(c("shiny","dplyr","shinydashboard","ggplot2"))
 Hoặc lần lượt từng Packages. Khi gặp lỗi ở đâu, hệ thống sẽ báo thiếu thư viện tương ứng và có gợi ý:
 ##### debian: lib-devxxx /redhat: lib-xxx
-## 1.2. Tạo hiệu ứng bánh xe xoay vòng khi tải trang
+# 2. Tạo hiệu ứng bánh xe xoay vòng khi tải trang
 ###### options(spinner.color="#006272")
-## 1.3. Thiết kế giao diện Dashboard
+# 3. Thiết kế giao diện Dashboard
 ![Giao diện UIPage](README_img/uipage.png)
 ui <- dashboardPage(
     ## Tiêu đề của Dashboard
@@ -54,7 +54,7 @@ ui <- dashboardPage(
         )
     )#End DashboardBody
 )#End UI Dashboard
-## 1.3.1. Thiết kế dashboardSidebar
+## 3.1. Thiết kế dashboardSidebar
 dashboardSidebar là khung cửa sổ bên trái, khi click vào biểu tượng Menu thì cửa sổ này sẽ thu gọn lại về bên trái.
 ### Thiết kế các menuItem
 Các menu Item là các dòng Menu để khi click lên dòng nào thì page tương ứng được mở ra. Ví dụ ở đây:
@@ -89,7 +89,7 @@ ui <- dashboardPage(
         )
     )#End DashboardBody
     )#End UI Dashboard
-## 1.3.2. Thiết kế dashboardBody
+## 3.2. Thiết kế dashboardBody
 DashboadBody sẽ hiển thị nội dung của WebGIS, trong đó mỗi page được kích hoạt từ menu của sidebarMenu. Để ý có thể nhận thấy, mỗi page được định nghĩa thành một list các tabItems.Trong đó:
 ##### tabItem có 2 thành phần: (1) tabName = "tên của tabName" trong menuItem; (2) Nội dung hiển thị: Title, Table, Plot, leaflet,... Cụ thể, mỗi đối tượng khác nhau sẽ có cách gọi cũng khác nhau. Ví dụ:
 ##### + leafletOutput("SHPplot", height = 570)),
@@ -128,3 +128,4 @@ ui <- dashboardPage(
       )#End DashboardBody
     )#End UI Dashboard
 ##### Để có thể gọi giao diện của thành phần nào thì trong server.R sẽ ouput thành phần tương ứng.
+# 4. Thiết kế nội dung của server.R
