@@ -39,41 +39,41 @@ Hoặc lần lượt từng Packages. Khi gặp lỗi ở đâu, hệ thống s�
 ## 1.3. Thiết kế giao diện Dashboard
 ![Giao diện UIPage](README_img/uipage.png)
 ui <- dashboardPage(
-    dashboardHeader(title = "Genetics Conservation"), #Tiêu đề của Dashboard
+    ## Tiêu đề của Dashboard
+    dashboardHeader(title = "Genetics Conservation"), 
+    
     ## Sidebar content
     dashboardSidebar(
+        
+        )
+    ),
+    
+    ## Body
+    dashboardBody(
+
+        )
+    )#End DashboardBody
+)#End UI Dashboard
+## 1.3.1. Thiết kế dashboardSidebar
+dashboardSidebar là khung cửa sổ bên trái, khi click vào biểu tượng Menu thì cửa sổ này sẽ thu gọn lại về bên trái.
+### Thiết kế các menuItem
+Các menu Item là các dòng Menu để khi click lên dòng nào thì page tương ứng được mở ra. Ví dụ ở đây:
++ menu có tên là Locations nằm trên cùng
++ menu có tên Widgets nằm bên dưới. Bên trong Widgets còn có các menu con:
+    menu Infomation
+    menu Sequences
+    menu Images
+Mỗi menu sẽ có các thuộc tính:
++ title: tên hiển thị trên page
++ tabName: để gọi hay kích hoạt trong code
++ icon: được sử dụng từ https://fontawesome.com/v5.15/icons?d=gallery&p=2&q=plug. 
+##### Chú ý, khi lựa chọn, có 2 cách: (1) gọi theo tên (icon = icon("pagelines")) (2) gọi theo mã HTML (icon = HTML('<i class="fas fa-dna"></i>')). Tại sao? vì mỗi tên icon có thể có nhiều hình dạng khác nhau nên có khả năng là rhinypage không load được. Cách tốt nhất là dùng mã HTML
+dashboardSidebar(
         sidebarMenu(
             menuItem("Locations", tabName = "dashboard", icon = icon("pagelines")),
             menuItem("Widgets", tabName = "widgets", icon = icon("th"),
                      menuSubItem("Infomation", icon = icon("info-circle"),tabName ="infomation"),
                      menuSubItem("Sequences", icon = HTML('<i class="fas fa-dna"></i>'),tabName ="genetics"),
-                     menuSubItem("Images", icon = icon("image"),tabName ="image")
-                     )
-        )
-    ),
-    
-    #Body
-    dashboardBody(
-        tabItems(
-            # MAP tab content
-            tabItem(tabName = "dashboard",
-                    leafletOutput("SHPplot", height = 570)),
-            
-            # Second tab content
-            tabItem(tabName = "widgets",
-                    h2("Widgets tab content")),
-            
-            #Subtab items
-            tabItem(tabName = "infomation", 
-                    uiOutput("infomation")),
-            
-             tabItem(tabName = "genetics", 
-                     uiOutput("genetics")),
-            
-             tabItem(tabName = "image",
-                     #tableOutput('files'),
-                     uiOutput("image"))
-        )
-    )#End Body
-    
-    )#End UI Dashboard
+                     menuSubItem("Images", icon = icon("image"),tabName ="image"))
+        )#End SideBarMenu
+    ),#End dashboardSidebar
