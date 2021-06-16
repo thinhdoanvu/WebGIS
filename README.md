@@ -69,7 +69,9 @@ Mỗi menu sẽ có các thuộc tính:
 + icon: được sử dụng từ https://fontawesome.com/v5.15/icons?d=gallery&p=2&q=plug. 
 ##### Chú ý, khi lựa chọn, có 2 cách: (1) gọi theo tên (icon = icon("pagelines")) (2) gọi theo mã HTML (icon = HTML('<i class="fas fa-dna"></i>')). Tại sao? vì mỗi tên icon có thể có nhiều hình dạng khác nhau nên có khả năng là rhinypage không load được. Cách tốt nhất là dùng mã HTML
 ui <- dashboardPage(
-    dashboardHeader(title = "Genetics Conservation"),
+    ## Tiêu đề của Dashboard
+    dashboardHeader(title = "Genetics Conservation"), 
+    
     ## Sidebar content
     dashboardSidebar(
         sidebarMenu(
@@ -79,10 +81,11 @@ ui <- dashboardPage(
                      menuSubItem("Sequences", icon = HTML('<i class="fas fa-dna"></i>'),tabName ="genetics"),
                      menuSubItem("Images", icon = icon("image"),tabName ="image"))
         )#End SideBarMenu
-    ),#End dashboardSidebar
+    ),
     
-    ## Body Content
+    ## Body
     dashboardBody(
-        
-    )#End Body
-    )#End UI Dashboard
+
+        )
+    )#End DashboardBody
+)#End UI Dashboard
