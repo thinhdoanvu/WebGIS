@@ -441,3 +441,22 @@ shinyServer(function(input, output) {
             )
       })#End of image Render UI
     })#End of Section Input Output
+# 5. How to export Shape files from Arcmap
+1. Open ArcMap
+2. Load Large Map (Vietnam Administration - VNM_adm3.shp)
+![Chọn layers](README_img/select_2layers.JPG)
+3. Select feature (Hoa Quang Nam, Hoa Quang Bac):
+	Open Attribute table 
+		- Select by Hoa Quang Nam, Hoa Quang Bac
+		- Zoom to Selected
+		- Close Table
+![Zoom to selected layers](README_img/zoomto_2layers.JPG)
+4. R_Click Layer - Data - Export Data
+	- Tick: this layer's source data
+	- Save Output feature data
+		Name: HoaQuangNam_Bac.shp
+	- OK
+	- Add to layer or Not (yes)
+![Zoom to selected layers](README_img/exportdata.png)
+5. Add layer to map
+![Add layer to map](README_img/arcmap_result.JPG)
