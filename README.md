@@ -146,12 +146,102 @@ Tên layer của 2 địa điểm thu mẫu được trình bày trong ArcGIS (x
 
 ##### icon cho từng địa điểm thu mẫu, sử dụng thư viện của leaflet.
 ###### greenLeafIcon <- makeIcon(
-  ####### iconUrl = "http://leafletjs.com/examples/custom-icons/leaf-green.png",
-  ####### iconWidth = 38, iconHeight = 95,
-  ####### iconAnchorX = 22, iconAnchorY = 94,
-  ####### shadowUrl = "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
-  ####### shadowWidth = 50, shadowHeight = 64,
+  ###### iconUrl = "http://leafletjs.com/examples/custom-icons/leaf-green.png",
+  ###### iconWidth = 38, iconHeight = 95,
+  ###### iconAnchorX = 22, iconAnchorY = 94,
+  ###### shadowUrl = "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+  ###### shadowWidth = 50, shadowHeight = 64,
   ####### shadowAnchorX = 4, shadowAnchorY = 62
 ###### )
 
 ## 4.2. Locations page
+shinyServer(function(input, output) {
+    
+    output$SHPplot <-  renderLeaflet({
+        initial_lat = 13.111667
+        initial_lng = 109.225278
+        initial_zoom = 10
+            
+        #Add map
+        leaflet(data = mydata) %>%
+        addProviderTiles ("Esri.WorldImagery", options = providerTileOptions(minZoom = 6, maxZoom = 17)) %>% 
+        setView(lat = initial_lat, lng = initial_lng, zoom = initial_zoom) %>%
+        
+        #Add circle
+        #addCircles(lng = 109.204444, lat = 13.071389, weight = 3,radius = 14*100, popup = "Hòa Quang Nam") %>%
+        #addCircles(lng = 109.225278, lat = 13.111667, weight = 3,radius = 5*100, popup = "Hòa Quang Bắc") %>%
+            
+        #Add shape
+        addPolygons(data = sample_loc, fill = TRUE, weight = 2, opacity = 0.7, color = "#f55c47", dashArray = "3", smoothFactor = 1, label = ~NAME_3) %>%
+            
+        #Add marker, popup cac diem thu mau
+        addMarkers(~long, 
+                   ~lat, 
+                   icon = greenLeafIcon,
+                   popup = paste("<strong>",mydata$specifies, '</strong>',"<br>",
+                                    "<img src = ",mydata$Pictures, " width = 300 >", #Neu trong file data da co dau ' trong duong dan hinh anh & Chu y ca dau cach
+                                    #"<img src = '",mydata$Pictures, "' width = 100 >",  # Neu trong file data khong co dau ' cua duong dan hinh anh & Chu y ca dau cach
+                                    "<br>",
+                                    mydata$Description,
+                                 "<br>",
+                                 "<i><a href='http://www.samurainoodle.com'>Details</a></i>"
+                                 ), 
+                   #Cluster options
+                   clusterOptions = markerClusterOptions(),
+                   clusterId = "samplelocations"
+        ) %>%
+            
+        #Distance and Square
+        addMeasure(primaryLengthUnit="kilometers", secondaryLengthUnit="kilometers") %>%
+        
+        #Add Button
+            addEasyButton(
+            
+                #Zoom in / Out
+                easyButton(icon="fa-globe", 
+                    title="Zoom to fit map",
+                    onClick=JS("function(btn, map){ map.setZoom(6);}"))) %>%
+                
+                #unfreeze / freeze
+                addEasyButtonBar(easyButton(
+                    states = list(
+                        easyButtonState(stateName="frozen-markers",
+                                        icon="ion-toggle-filled",
+                                        title="UnFreeze Clusters",
+                                        onClick = JS("function(btn, map) {
+                                        var clusterManager =
+                                        map.layerManager.getLayer('cluster', 'quakesCluster');
+                                        clusterManager.unfreeze();
+                                                     btn.state('unfrozen-markers');}")),
+                
+                #freeze
+                        easyButtonState(stateName="unfrozen-markers",
+                                        icon="ion-toggle",
+                                        title="Freeze Clusters",
+                                        onClick = JS("function(btn, map) {
+                                                var clusterManager =
+                                                map.layerManager.getLayer('cluster', 'quakesCluster');
+                                                clusterManager.freezeAtZoom();
+                                                             btn.state('frozen-markers');}"))        
+                    ))) #End of Button
+            
+            
+                
+            
+    })#End of leaflet
+    
+    #---------------------------------------------------------------------------
+    
+    #Lien quan den menu
+    output$infomation <- renderUI({
+        
+      })#End of Infomation
+    
+    output$genetics <- renderUI({
+        
+      })#End of genetics Render UI
+    
+    output$image <- renderUI({
+        
+      })#End of image Render UI
+    })#End of Section Input Output
