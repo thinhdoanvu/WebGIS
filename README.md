@@ -90,7 +90,11 @@ ui <- dashboardPage(
     )#End DashboardBody
     )#End UI Dashboard
 ## 1.3.2. Thiết kế dashboardBody
-
+DashboadBody sẽ hiển thị nội dung của WebGIS, trong đó mỗi page được kích hoạt từ menu của sidebarMenu. Để ý có thể nhận thấy, mỗi page được định nghĩa thành một list các tabItems.Trong đó:
+##### tabItem có 2 thành phần: (1) tabName = "tên của tabName" trong menuItem; (2) Nội dung hiển thị: Title, Table, Plot, leaflet,... Cụ thể, mỗi đối tượng khác nhau sẽ có cách gọi cũng khác nhau. Ví dụ:
+##### + leafletOutput("SHPplot", height = 570)),
+##### + h2("Widgets tab content"))
+##### + uiOutput("infomation"))
 ui <- dashboardPage(
     ## Tiêu đề của Dashboard
     dashboardHeader(title = "Genetics Conservation"), 
@@ -121,5 +125,6 @@ ui <- dashboardPage(
                      #tableOutput('files'),
                      uiOutput("image"))
         )#End Tab Items
-    )#End DashboardBody
+      )#End DashboardBody
     )#End UI Dashboard
+##### Để có thể gọi giao diện của thành phần nào thì trong server.R sẽ ouput thành phần tương ứng.
