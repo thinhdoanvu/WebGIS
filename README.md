@@ -129,3 +129,29 @@ ui <- dashboardPage(
     )#End UI Dashboard
 ##### Để có thể gọi giao diện của thành phần nào thì trong server.R sẽ ouput thành phần tương ứng.
 # 4. Thiết kế nội dung của server.R
+## 4.1. Khởi tạo các biến toàn cục:
+##### mydata = read.csv("www/mydata.csv",header = TRUE, sep = ";",encoding = 'UTF-8') 
+Nội dung của file data như sau:
+lat;long;high;specifies;Date;Description;Pictures
+13.111667;109.225278;36.03;Stephania sp1;24/02/2021; Củ nhỏ như củ khoai, độ dài củ khoảng 29cm, chu vi 12cm, nặng 8g, phần dây leo dài khoảng 60cm;'images/sp1.jpg'
++ Mỗi một cột cách nhau bằng 1 dấu ;
++ lat; long; high: tọa độ GPS
++ species: tên của loài thu mẫu
++ Date: thời gian thu mẫu
++ Description: mô tả về mẫu
++ Picture: mỗi mẫu sẽ có 1 ảnh đại diện
+
+##### sample_loc <- readOGR(dsn ="www/shapefiles/HoaQuangNam_Bac", layer = "HoaQuangNam_Bac")
+Tên layer của 2 địa điểm thu mẫu được trình bày trong ArcGIS (xem hướng dẫn làm thế nào để tạo được 2 layer này ở cuối bài viết)
+
+##### icon cho từng địa điểm thu mẫu
+greenLeafIcon <- makeIcon(
+    iconUrl = "http://leafletjs.com/examples/custom-icons/leaf-green.png",
+    iconWidth = 38, iconHeight = 95,
+    iconAnchorX = 22, iconAnchorY = 94,
+    shadowUrl = "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+    shadowWidth = 50, shadowHeight = 64,
+    shadowAnchorX = 4, shadowAnchorY = 62
+)
+Sử dụng thư viện của leaflet.
+## 4.2. Locations page
