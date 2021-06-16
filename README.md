@@ -450,7 +450,7 @@ shinyServer(function(input, output) {
 		- Select by Hoa Quang Nam, Hoa Quang Bac
 		- Zoom to Selected
 		- Close Table
-![Zoom to selected layers](README_img/zoomto_2layers.JPG)
+![Zoom to selected layers](README_img/zoomto_2layers.jpg)
 4. R_Click Layer - Data - Export Data
 	- Tick: this layer's source data
 	- Save Output feature data
