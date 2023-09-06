@@ -1,5 +1,5 @@
 # Lập trình WebGis sử dụng R shiny
-### install all pakages before using, please attention on leaflet installation: install sudo apt-get install libgdal-dev
+### install all pakages before using, please attention on leaflet installation: sudo apt-get install libgdal-dev
 ![kết quả của Project](README_img/result_all.png)
 ## 1. Khởi tạo và yêu cầu
 Hệ điều hành: Ubuntu 20.10 hoặc Windows 10 x64
